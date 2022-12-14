@@ -7,6 +7,9 @@ public class Entity {
     
     public int x , y;
     public int speed;
+    public int hp;
+    public int atk;
+    
     
     public BufferedImage idle1,idle2,idle3,idle4,idle5,idle6; 
     public String direction;

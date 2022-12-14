@@ -39,6 +39,7 @@ public class GameControlerModel extends JFrame{
         controlwindow.add(item);
         controlwindow.add(defend);
         
+        controlwindow.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         controlwindow.setLocation(dx,dy);
         controlwindow.setVisible(true);
         
