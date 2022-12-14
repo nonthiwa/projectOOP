@@ -4,8 +4,11 @@ import Main.soundcontrol;
 import javax.swing.*;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Font;
-public class Mainmenu {
+import java.awt.GraphicsEnvironment;
+import java.awt.Point;
+public class Mainmenu extends JFrame{
     private soundcontrol Sound;
     private JFrame window;
     private Container con;
@@ -17,7 +20,7 @@ public class Mainmenu {
     private JButton exitButton;
     private JButton howtoButton;
 
-    public Mainmenu() {
+    public Mainmenu() {   
         Sound = new soundcontrol();
         window = new JFrame();
         window.setSize(800,700);

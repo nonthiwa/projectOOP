@@ -1,6 +1,7 @@
 package Main;
 
 import entity.Enemy;
+import entity.Hero;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -18,7 +19,6 @@ public class GamePanel extends JPanel implements Runnable {
     final int screenHeight = tileSize * maxScreenRow;//576 pixels
     
     //test for animation
-    KeyHandler keyH = new KeyHandler();
     int playerX = 100;
     int playerY = 100;
     int speed = 4;
@@ -26,7 +26,9 @@ public class GamePanel extends JPanel implements Runnable {
     
     Thread gameThread;
     Enemy enemy = new Enemy(this);
-    
+    Hero hero = new Hero(this);
+    GameControlerModel gameControlmodel = new GameControlerModel();
+    GameControler gameControl = new GameControler(gameControlmodel,hero);
     int FPS = 60;
 
     public GamePanel(){
@@ -34,11 +36,10 @@ public class GamePanel extends JPanel implements Runnable {
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
         //test for animation
-        this.addKeyListener(keyH);
         this.setFocusable(true);
         //test for animation
     }
-
+    
     public void startGameThread(){
         gameThread = new Thread(this);
         gameThread.start();
@@ -71,15 +72,24 @@ public class GamePanel extends JPanel implements Runnable {
     }
     public void update(){
         enemy.update();
+        hero.update();
     }
+    @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         
         Graphics2D g2 = (Graphics2D)g;
         
         enemy.draw(g2);
+        hero.draw(g2);
         
         g2.dispose();
         
     }
+
+    public Hero getHero() {
+        return hero;
+    }
+
+
 }

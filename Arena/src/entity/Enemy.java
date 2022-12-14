@@ -2,7 +2,6 @@ package entity;
 
 
 import Main.GamePanel;
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -20,7 +19,7 @@ public class Enemy extends Entity{
     
     public void setDefaultValues(){
         x=450;
-        y=200;
+        y=180;
         direction = "idle1";
     }
     public void update(){
