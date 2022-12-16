@@ -20,6 +20,8 @@ public class Enemy extends Entity{
     public void setDefaultValues(){
         x=450;
         y=180;
+        setHp(200);
+        atk=40;
         direction = "idle1";
     }
     public void update(){
@@ -91,6 +93,21 @@ public class Enemy extends Entity{
 
     public void setGp(GamePanel gp) {
         this.gp = gp;
+    }
+
+    @Override
+    public void attack(Hero h) {
+        h.attacked(this.getAtk());
+    }
+
+    @Override
+    public void attack(Enemy e1) {
+        e1.attacked(this.getAtk());
+    }
+
+    @Override
+    public void attacked(double n) {
+        this.setHp((int) (this.getHp()-n));
     }
 }
  

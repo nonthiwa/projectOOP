@@ -3,11 +3,11 @@ package entity;
 
 import java.awt.image.BufferedImage;
 
-public class Entity {
+public abstract  class Entity {
     
     public int x , y;
     public int speed;
-    public int hp;
+    private int hp;
     public String hpS;
     public int atk;
     
@@ -18,7 +18,10 @@ public class Entity {
     public int checkrev = 0;
     public int spriteCounter = 0;
     public int spriteNum = 0;
-
+    
+    public abstract void attack(Hero h);
+    public abstract void attack(Enemy e1);
+    public abstract void attacked(double n);
     public int getHp() {
         return hp;
     }
@@ -26,6 +29,18 @@ public class Entity {
     public String getHp(int hp) {
         hpS = hp+"";
         return hpS;
+    }
+
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    public void setHpS(String hpS) {
+        this.hpS = hpS;
+    }
+
+    public int getAtk() {
+        return atk;
     }
     
 }

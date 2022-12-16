@@ -1,27 +1,27 @@
 package entity;
 
+
 import Main.GamePanel;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-
-public class Hero extends Entity{
+public class Enemy2 extends Entity{
     private GamePanel gp;
-    private boolean actionA=false;
-    private boolean actionD=false;
-    public Hero(GamePanel gp) {
+
+    public Enemy2(GamePanel gp) {
         this.setGp(gp);
         
         setDefaultValues();
         getEnemyImage();
     }
+    
     public void setDefaultValues(){
-        x=130;
-        y=210;
-        setHp(100);
-        atk=100;
+        x=450;
+        y=180;
+        setHp(200);
+        atk=40;
         direction = "idle1";
     }
     public void update(){
@@ -51,11 +51,7 @@ public class Hero extends Entity{
     public void draw(Graphics2D g2){
           
         BufferedImage image = null;
-        if(this.getHp() <=0){
-            image = null;
-        }
-        if(actionA == false){
-            switch(spriteNum){
+        switch(spriteNum){
             case 0:
                 image = idle1;
                 break;
@@ -75,31 +71,6 @@ public class Hero extends Entity{
                 image = idle6;
                 break;
         }
-        }
-        else if (actionA == true){
-            switch(spriteNum){
-            case 0:
-                image = idle1;
-                break;
-            case 1:
-                image = idle1;
-                break;
-            case 2:
-                image = idle1;
-                break;
-            case 3:
-                image = idle1;
-                break;
-            case 4:
-                image = idle1;
-                break;
-            case 5:
-                image = idle1;
-                setActionA(false);
-                break;
-            }
-        }
-            
         g2.drawImage(image,x,y,gp.tileSize*4,gp.tileSize*4,null);
     }
     
@@ -124,17 +95,6 @@ public class Hero extends Entity{
         this.gp = gp;
     }
 
-    public boolean isActionA() {
-        return actionA;
-    }
-
-    public void setActionA(boolean actionA) {
-        this.actionA = actionA;
-    }
-    public void setActionD(boolean actionD) {
-        this.actionD = actionD;
-    }
-
     @Override
     public void attack(Hero h) {
         h.attacked(this.getAtk());
@@ -149,5 +109,5 @@ public class Hero extends Entity{
     public void attacked(double n) {
         this.setHp((int) (this.getHp()-n));
     }
-    
 }
+ 

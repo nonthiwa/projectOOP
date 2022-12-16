@@ -1,27 +1,27 @@
 package entity;
 
+
 import Main.GamePanel;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-
-public class Hero extends Entity{
+public class Enemy3 extends Entity{
     private GamePanel gp;
-    private boolean actionA=false;
-    private boolean actionD=false;
-    public Hero(GamePanel gp) {
+
+    public Enemy3(GamePanel gp) {
         this.setGp(gp);
         
         setDefaultValues();
         getEnemyImage();
     }
+    
     public void setDefaultValues(){
-        x=130;
-        y=210;
-        setHp(100);
-        atk=100;
+        x=450;
+        y=180;
+        setHp(200);
+        atk=40;
         direction = "idle1";
     }
     public void update(){
@@ -51,11 +51,7 @@ public class Hero extends Entity{
     public void draw(Graphics2D g2){
           
         BufferedImage image = null;
-        if(this.getHp() <=0){
-            image = null;
-        }
-        if(actionA == false){
-            switch(spriteNum){
+        switch(spriteNum){
             case 0:
                 image = idle1;
                 break;
@@ -75,42 +71,17 @@ public class Hero extends Entity{
                 image = idle6;
                 break;
         }
-        }
-        else if (actionA == true){
-            switch(spriteNum){
-            case 0:
-                image = idle1;
-                break;
-            case 1:
-                image = idle1;
-                break;
-            case 2:
-                image = idle1;
-                break;
-            case 3:
-                image = idle1;
-                break;
-            case 4:
-                image = idle1;
-                break;
-            case 5:
-                image = idle1;
-                setActionA(false);
-                break;
-            }
-        }
-            
         g2.drawImage(image,x,y,gp.tileSize*4,gp.tileSize*4,null);
     }
     
     public void getEnemyImage(){
         try{
-            idle1 = ImageIO.read(getClass().getResourceAsStream("/HeroPic/noBKG_Knightidle_strip1.png"));
-            idle2 = ImageIO.read(getClass().getResourceAsStream("/HeroPic/noBKG_Knightidle_strip2.png"));
-            idle3 = ImageIO.read(getClass().getResourceAsStream("/HeroPic/noBKG_Knightidle_strip3.png"));
-            idle4 = ImageIO.read(getClass().getResourceAsStream("/HeroPic/noBKG_Knightidle_strip4.png"));
-            idle5 = ImageIO.read(getClass().getResourceAsStream("/HeroPic/noBKG_Knightidle_strip5.png"));
-            idle6 = ImageIO.read(getClass().getResourceAsStream("/HeroPic/noBKG_Knightidle_strip6.png"));
+            idle1 = ImageIO.read(getClass().getResourceAsStream("/EnemyPic/demon-idle1.png"));
+            idle2 = ImageIO.read(getClass().getResourceAsStream("/EnemyPic/demon-idle2.png"));
+            idle3 = ImageIO.read(getClass().getResourceAsStream("/EnemyPic/demon-idle3.png"));
+            idle4 = ImageIO.read(getClass().getResourceAsStream("/EnemyPic/demon-idle4.png"));
+            idle5 = ImageIO.read(getClass().getResourceAsStream("/EnemyPic/demon-idle5.png"));
+            idle6 = ImageIO.read(getClass().getResourceAsStream("/EnemyPic/demon-idle6.png"));
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -122,17 +93,6 @@ public class Hero extends Entity{
 
     public void setGp(GamePanel gp) {
         this.gp = gp;
-    }
-
-    public boolean isActionA() {
-        return actionA;
-    }
-
-    public void setActionA(boolean actionA) {
-        this.actionA = actionA;
-    }
-    public void setActionD(boolean actionD) {
-        this.actionD = actionD;
     }
 
     @Override
@@ -149,5 +109,5 @@ public class Hero extends Entity{
     public void attacked(double n) {
         this.setHp((int) (this.getHp()-n));
     }
-    
 }
+ 
