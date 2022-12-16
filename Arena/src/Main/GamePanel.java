@@ -28,7 +28,8 @@ public class GamePanel extends JPanel implements Runnable {
     Enemy enemy = new Enemy(this);
     Hero hero = new Hero(this);
     GameControlerModel gameControlmodel = new GameControlerModel();
-    GameControler gameControl = new GameControler(gameControlmodel,hero);
+    LogControlerModel logControlmodel = new LogControlerModel();
+    GameControler gameControl = new GameControler(gameControlmodel,hero, logControlmodel);
     int FPS = 60;
 
     public GamePanel(){

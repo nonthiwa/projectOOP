@@ -17,7 +17,8 @@ public class LevelMenu {
     public LevelMenu() {
         levelButtonPanel = new JPanel();
         levelButtonPanel.setBounds(300, 400, 200, 200);
-        levelButtonPanel.setBackground(Color.black);
+//        levelButtonPanel.setBackground(Color.black);
+        levelButtonPanel.setOpaque(false);
         
         easyButton = new JButton("EASY");
         easyButton.setBackground(Color.black);

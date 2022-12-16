@@ -6,9 +6,14 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GraphicsEnvironment;
+import java.awt.Image;
 import java.awt.Point;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 public class Mainmenu extends JFrame{
+    private Image bg;
     private soundcontrol Sound;
     private JFrame window;
     private Container con;
@@ -23,24 +28,37 @@ public class Mainmenu extends JFrame{
     public Mainmenu() {   
         Sound = new soundcontrol();
         window = new JFrame();
-        window.setSize(800,700);
+//        window.setSize(800,700);
+        window.setPreferredSize(new Dimension(800, 700));
+        window.pack();
+        window.setResizable(false);
         window.setLocationRelativeTo(null);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.getContentPane().setBackground(Color.black);
+        window.getContentPane().setBackground(Color.BLACK);
+        getBGImage();
+        window.setContentPane(new JPanel() {
+            @Override
+            public void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(bg, 0, 0, null);
+            }
+        });
         window.setLayout(null);
         window.setVisible(true);
         con = window.getContentPane();
         
         titleNamePanel = new JPanel();
         titleNamePanel.setBounds(100, 100, 600, 150);
-        titleNamePanel.setBackground(Color.black);
+        titleNamePanel.setOpaque(false);
+//        titleNamePanel.setBackground(Color.black);
         titleNameLabel = new JLabel("THE ARENA");
         titleNameLabel.setForeground(Color.white);
         titleNameLabel.setFont(titleFont);
         
         startButtonPanel = new JPanel();
         startButtonPanel.setBounds(275, 400, 250, 150);
-        startButtonPanel.setBackground(Color.black);
+        startButtonPanel.setOpaque(false);
+//        startButtonPanel.setBackground(Color.black);
         
         startButton = new JButton("START");
         startButton.setBackground(Color.black);
@@ -65,6 +83,8 @@ public class Mainmenu extends JFrame{
         
         con.add(titleNamePanel);
         con.add(startButtonPanel);
+        titleNamePanel.revalidate();
+        startButtonPanel.revalidate();
         Sound.playMusic(0);
     }
 
@@ -156,5 +176,11 @@ public class Mainmenu extends JFrame{
         return exitButton;
     }
     
-    
+    public void getBGImage(){
+        try{
+            bg = ImageIO.read(getClass().getResourceAsStream("/BackgroundPic/wallpaperflare.com_wallpaper.jpg"));
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
 }

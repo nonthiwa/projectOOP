@@ -20,6 +20,7 @@ public class Hero extends Entity{
     public void setDefaultValues(){
         x=130;
         y=210;
+        hp=80;
         direction = "idle1";
     }
     public void update(){

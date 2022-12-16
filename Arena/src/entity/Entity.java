@@ -8,6 +8,7 @@ public class Entity {
     public int x , y;
     public int speed;
     public int hp;
+    public String hpS;
     public int atk;
     
     
@@ -17,4 +18,14 @@ public class Entity {
     public int checkrev = 0;
     public int spriteCounter = 0;
     public int spriteNum = 0;
+
+    public int getHp() {
+        return hp;
+    }
+    
+    public String getHp(int hp) {
+        hpS = hp+"";
+        return hpS;
+    }
+    
 }
