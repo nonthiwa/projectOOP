@@ -3,13 +3,11 @@ package Main;
 import entity.Enemy;
 import entity.Enemy2;
 import entity.Enemy3;
-import entity.Entity;
 import entity.Hero;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.util.ArrayList;
 import javax.swing.JPanel;
 public class GamePanel extends JPanel implements Runnable {
     
@@ -25,7 +23,6 @@ public class GamePanel extends JPanel implements Runnable {
     int stage = 1;
     
     Thread gameThread;
-    ArrayList <Entity> entityList = new ArrayList<>();
     Enemy enemy = new Enemy(this);
     Enemy2 enemy2 = new Enemy2(this);
     Enemy3 enemy3 = new Enemy3(this);
