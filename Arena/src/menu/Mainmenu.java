@@ -13,6 +13,7 @@ import java.awt.Point;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 public class Mainmenu extends JFrame{
+    private ImageIcon playb, playbh, tutorialb, tutorialbh, exitb, exitbh;
     private Image bg;
     private soundcontrol Sound;
     private JFrame window;
@@ -35,7 +36,7 @@ public class Mainmenu extends JFrame{
         window.setLocationRelativeTo(null);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.getContentPane().setBackground(Color.BLACK);
-        getBGImage();
+        getImages();
         window.setContentPane(new JPanel() {
             @Override
             public void paintComponent(Graphics g) {
@@ -56,23 +57,38 @@ public class Mainmenu extends JFrame{
         titleNameLabel.setFont(titleFont);
         
         startButtonPanel = new JPanel();
-        startButtonPanel.setBounds(275, 400, 250, 150);
+        startButtonPanel.setBounds(275, 300, 250, 200);
         startButtonPanel.setOpaque(false);
 //        startButtonPanel.setBackground(Color.black);
         
-        startButton = new JButton("START");
+        startButton = new JButton("");
         startButton.setBackground(Color.black);
         startButton.setForeground(Color.white);
+        startButton.setOpaque(false);
+        startButton.setBorderPainted(false);
+        startButton.setIcon(playb);
+        startButton.setRolloverEnabled(true);
+        startButton.setRolloverIcon(playbh);
         startButton.setFont(normalFont);
         
-        howtoButton = new JButton("HOW TO PLAY");
+        howtoButton = new JButton("");
         howtoButton.setBackground(Color.black);
         howtoButton.setForeground(Color.white);
+        howtoButton.setOpaque(false);
+        howtoButton.setBorderPainted(false);
+        howtoButton.setIcon(tutorialb);
+        howtoButton.setRolloverEnabled(true);
+        howtoButton.setRolloverIcon(tutorialbh);
         howtoButton.setFont(normalFont);
         
-        exitButton = new JButton("EXIT");
+        exitButton = new JButton("");
         exitButton.setBackground(Color.black);
         exitButton.setForeground(Color.white);
+        exitButton.setOpaque(false);
+        exitButton.setBorderPainted(false);
+        exitButton.setIcon(exitb);
+        exitButton.setRolloverEnabled(true);
+        exitButton.setRolloverIcon(exitbh);
         exitButton.setFont(normalFont);
         
         
@@ -176,9 +192,15 @@ public class Mainmenu extends JFrame{
         return exitButton;
     }
     
-    public void getBGImage(){
+    public void getImages(){
         try{
             bg = ImageIO.read(getClass().getResourceAsStream("/BackgroundPic/wallpaperflare.com_wallpaper.jpg"));
+            playb = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/buttonPic/play.png")));
+            playbh = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/buttonPic/playhover.png")));
+            tutorialb = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/buttonPic/tutorial.png")));
+            tutorialbh = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/buttonPic/tutorialhover.png")));
+            exitb = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/buttonPic/exit.png")));
+            exitbh = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/buttonPic/exithover.png")));
         }catch(IOException e){
             e.printStackTrace();
         }

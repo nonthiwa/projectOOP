@@ -11,7 +11,7 @@ public abstract  class Entity {
     private int atk;
     
     
-    public BufferedImage idle1,idle2,idle3,idle4,idle5,idle6; 
+    public BufferedImage idle1,idle2,idle3,idle4,idle5,idle6,aATK1,aATK2,aATK3,aATK4,aATK5,aATK6,aATK7,aATK8,aATK9,aATK10,aATK11; 
     public String direction;
     
     public int checkrev = 0;

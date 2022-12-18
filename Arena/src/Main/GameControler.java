@@ -33,12 +33,12 @@ public class GameControler implements ActionListener{
            hero.setActionA(true);
            if(getStage() == 1){
                getHero().getGp().setAction(1);
-               hero.attack(e1);
            }
-           logModel.getLog().setText("Hero Status\nHP : "+hero.getHp()+"/100\nATK : "+hero.getAtk()+"\nEnemy Status\nHP : "+e1.getHp()+"\nATK : "+e1.getAtk());
+          
            
        }
        if (e.getSource().equals(controlModel.getPower())){
+           getHero().getGp().setAction(3);
            hero.setActionD(true);
            logModel.getLog().setText("Power Up!!\n");
        }

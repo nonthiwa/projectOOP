@@ -27,15 +27,16 @@ public class GamePanel extends JPanel implements Runnable {
     private BufferedImage image1, image2, image3;
     private Image bg1, bg2, bg3;
     
+    public int count=0;
     public int stage = 1;
     public int type;
-    public Enemy enemy;
-    public Enemy2 enemy2;
-    public Enemy3 enemy3;
-    public Hero hero;
-    public GameControlerModel gameControlmodel;
-    public LogControlerModel logControlmodel;
-    public GameControler gameControl; 
+    private Enemy enemy;
+    private Enemy2 enemy2;
+    private Enemy3 enemy3;
+    private Hero hero;
+    private GameControlerModel gameControlmodel;
+    private LogControlerModel logControlmodel;
+    private GameControler gameControl; 
     private int action = 0;
     Thread gameThread;
     int FPS = 60;
@@ -54,13 +55,7 @@ public class GamePanel extends JPanel implements Runnable {
         gameControl = new GameControler(gameControlmodel,hero, logControlmodel, enemy, enemy2, enemy3, stage);
         getBGImage();
     }
-//    public GamePanel(int i){
-//        this();
-//        if(i == 1){
-//           type = 1;
-//        }
-//    }
-    
+
     public void startGameThread(){
         gameThread = new Thread(this);
         gameThread.start();
@@ -77,16 +72,11 @@ public class GamePanel extends JPanel implements Runnable {
         while(gameThread != null){
             if (enemy.getHp() <= 0){
                 stage = 2;
+                getLogControlmodel().getLog().setText("Hero Status\nHP : "+getHero().getHp()+"/100\nATK : "+getHero().getAtk()+"\nEnemy Status\nHP : "+getEnemy2().getHp()+"\nATK : "+getEnemy2().getAtk());
+
             }
             else if (enemy2.getHp() <= 0){
                 stage = 3;
-            }
-            else{
-                if (getAction() == 1){
-                enemy.attack(hero);
-                logControlmodel.getLog().setText("Hero Status\nHP : "+hero.getHp()+"/100\nATK : "+hero.getAtk()+"\nEnemy Status\nHP : "+enemy.getHp()+"\nATK : "+enemy.getAtk());
-                setAction(0);
-                }
             }
             
             currentTime = System.nanoTime();
@@ -104,11 +94,12 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
     public void update(){
+        hero.update();
         if(stage == 1 && getAction() == 0){
             enemy.update();
         }
         else if (stage == 1 && getAction() == 1){
-            enemy.update();
+            enemy.update(); 
         }
         if (stage == 2){
             enemy2.update();
@@ -116,7 +107,6 @@ public class GamePanel extends JPanel implements Runnable {
         if(stage == 3){
             enemy3.update();
         }
-        hero.update();
         
     }
     @Override
@@ -137,7 +127,6 @@ public class GamePanel extends JPanel implements Runnable {
             enemy3.draw(g2);
         }
         hero.draw(g2);
-        
         g2.dispose();
         
     }
@@ -159,6 +148,46 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
+    public void setEnemy(Enemy enemy) {
+        this.enemy = enemy;
+    }
+
+    public void setEnemy2(Enemy2 enemy2) {
+        this.enemy2 = enemy2;
+    }
+
+    public void setEnemy3(Enemy3 enemy3) {
+        this.enemy3 = enemy3;
+    }
+
+    public void setHero(Hero hero) {
+        this.hero = hero;
+    }
+
+    public void setGameControlmodel(GameControlerModel gameControlmodel) {
+        this.gameControlmodel = gameControlmodel;
+    }
+
+    public void setLogControlmodel(LogControlerModel logControlmodel) {
+        this.logControlmodel = logControlmodel;
+    }
+
+    public void setGameControl(GameControler gameControl) {
+        this.gameControl = gameControl;
+    }
+
+    public GameControlerModel getGameControlmodel() {
+        return gameControlmodel;
+    }
+
+    public LogControlerModel getLogControlmodel() {
+        return logControlmodel;
+    }
+
+    public GameControler getGameControl() {
+        return gameControl;
+    }
+
     public int getAction() {
         return action;
     }
@@ -166,7 +195,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void setAction(int action) {
         this.action = action;
     }
-
+    
     public int getType() {
         return type;
     }

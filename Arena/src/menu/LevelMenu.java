@@ -4,7 +4,10 @@ import javax.swing.*;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 public class LevelMenu {
+    private ImageIcon easyb, easybh, normalb, normalbh, hardb, hardbh, backb, backbh;
     private boolean check=false;
     JFrame window;
     Container con;
@@ -15,29 +18,50 @@ public class LevelMenu {
     JButton easyButton,normalButton,hardButton,backButton;
 
     public LevelMenu() {
+        getImages();
         levelButtonPanel = new JPanel();
-        levelButtonPanel.setBounds(300, 400, 200, 200);
+        levelButtonPanel.setBounds(300, 300, 200, 300);
 //        levelButtonPanel.setBackground(Color.black);
         levelButtonPanel.setOpaque(false);
         
-        easyButton = new JButton("EASY");
+        easyButton = new JButton("");
         easyButton.setBackground(Color.black);
         easyButton.setForeground(Color.white);
+        easyButton.setOpaque(false);
+        easyButton.setBorderPainted(false);
+        easyButton.setIcon(easyb);
+        easyButton.setRolloverEnabled(true);
+        easyButton.setRolloverIcon(easybh);
         easyButton.setFont(normalFont);
         
-        normalButton = new JButton("NORMAL");
+        normalButton = new JButton("");
         normalButton.setBackground(Color.black);
         normalButton.setForeground(Color.white);
+        normalButton.setOpaque(false);
+        normalButton.setBorderPainted(false);
+        normalButton.setIcon(normalb);
+        normalButton.setRolloverEnabled(true);
+        normalButton.setRolloverIcon(normalbh);
         normalButton.setFont(normalFont);
         
-        hardButton = new JButton("HARD");
+        hardButton = new JButton("");
         hardButton.setBackground(Color.black);
         hardButton.setForeground(Color.white);
+        hardButton.setOpaque(false);
+        hardButton.setBorderPainted(false);
+        hardButton.setIcon(hardb);
+        hardButton.setRolloverEnabled(true);
+        hardButton.setRolloverIcon(hardbh);
         hardButton.setFont(normalFont);
         
-        backButton = new JButton("BACK");
+        backButton = new JButton("");
         backButton.setBackground(Color.black);
         backButton.setForeground(Color.white);
+        backButton.setOpaque(false);
+        backButton.setBorderPainted(false);
+        backButton.setIcon(backb);
+        backButton.setRolloverEnabled(true);
+        backButton.setRolloverIcon(backbh);
         backButton.setFont(normalFont);
         
         levelButtonPanel.add(easyButton);
@@ -142,5 +166,18 @@ public class LevelMenu {
         return backButton;
     }
     
-    
+    public void getImages(){
+        try{
+            easyb = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/buttonPic/easy.png")));
+            easybh = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/buttonPic/easyhover.png")));
+            normalb = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/buttonPic/normal.png")));
+            normalbh = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/buttonPic/normalhover.png")));
+            hardb = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/buttonPic/hard.png")));
+            hardbh = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/buttonPic/hardhover.png")));
+            backb = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/buttonPic/back.png")));
+            backbh = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/buttonPic/backhover.png")));
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
 }

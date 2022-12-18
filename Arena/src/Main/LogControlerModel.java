@@ -39,7 +39,7 @@ public class LogControlerModel extends JFrame{
         log.setForeground(Color.white);
         log.setFont(normalFont);
         log.setEditable(true);
-        controlwindow.setSize(300,200);
+        controlwindow.setSize(300,250);
         controlwindow.setLayout(new GridLayout(1,1));
         controlwindow.add(log);
         
