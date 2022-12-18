@@ -8,6 +8,9 @@ public class Menucontrol implements ActionListener, WindowListener {
     private Mainmenu main;
     private LevelMenu level;
     private soundcontrol Sound;
+    private int easy=1;
+    private int normal=2;
+    private int hard=3;
     public Menucontrol(){
         Sound = new soundcontrol();
         main = new Mainmenu();;
@@ -46,7 +49,19 @@ public class Menucontrol implements ActionListener, WindowListener {
             Sound.playSe(2);
             main.getSound().stopMusic();
             main.getWindow().setVisible(false);
-            new StartGame();
+            new StartGame(easy);
+        }
+        else if(e.getSource().equals(level.getNormalButton())){
+            Sound.playSe(2);
+            main.getSound().stopMusic();
+            main.getWindow().setVisible(false);
+            new StartGame(normal);
+        }
+        else if(e.getSource().equals(level.getHardButton())){
+            Sound.playSe(2);
+            main.getSound().stopMusic();
+            main.getWindow().setVisible(false);
+            new StartGame(hard);
         }
     }
 

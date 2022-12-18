@@ -24,22 +24,23 @@ public class GameControler implements ActionListener{
         setControlModel(gm);
         setLogModel(lm);
         controlModel.getAttack().addActionListener(this);
-        controlModel.getDefend().addActionListener(this);
-        controlModel.getItem().addActionListener(this);
+        controlModel.getHeal().addActionListener(this);
+        controlModel.getPower().addActionListener(this);
     }
 
     public void actionPerformed(ActionEvent e) {
        if (e.getSource().equals(controlModel.getAttack())){
            hero.setActionA(true);
            if(getStage() == 1){
+               getHero().getGp().setAction(1);
                hero.attack(e1);
            }
-           logModel.getLog().setText("HP : "+hero.getHp(hero.getHp())+"/100");
+           logModel.getLog().setText("Hero Status\nHP : "+hero.getHp()+"/100\nATK : "+hero.getAtk()+"\nEnemy Status\nHP : "+e1.getHp()+"\nATK : "+e1.getAtk());
            
        }
-       if (e.getSource().equals(controlModel.getDefend())){
+       if (e.getSource().equals(controlModel.getPower())){
            hero.setActionD(true);
-           logModel.getLog().setText("Defend!!\n");
+           logModel.getLog().setText("Power Up!!\n");
        }
     }
     public void setLogModel(LogControlerModel logModel) {

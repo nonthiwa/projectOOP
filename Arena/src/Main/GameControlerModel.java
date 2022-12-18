@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 
 public class GameControlerModel extends JFrame{
     private JFrame controlwindow;
-    private JButton attack,item,defend;
+    private JButton attack,heal,power;
     private Font normalFont = new Font("Times New Roman", Font.PLAIN, 30);
     public GameControlerModel() {
         Dimension windowSize = getSize();
@@ -25,19 +25,19 @@ public class GameControlerModel extends JFrame{
         attack.setBackground(Color.black);
         attack.setForeground(Color.white);
         attack.setFont(normalFont);
-        item = new JButton("ITEM");
-        item.setBackground(Color.black);
-        item.setForeground(Color.white);
-        item.setFont(normalFont);
-        defend = new JButton("DEFEND");
-        defend.setBackground(Color.black);
-        defend.setForeground(Color.white);
-        defend.setFont(normalFont);
+        heal = new JButton("HEAL");
+        heal.setBackground(Color.black);
+        heal.setForeground(Color.white);
+        heal.setFont(normalFont);
+        power = new JButton("POWER UP");
+        power.setBackground(Color.black);
+        power.setForeground(Color.white);
+        power.setFont(normalFont);
         controlwindow.setSize(300,500);
         controlwindow.setLayout(new GridLayout(3,1));
         controlwindow.add(attack);
-        controlwindow.add(item);
-        controlwindow.add(defend);
+        controlwindow.add(heal);
+        controlwindow.add(power);
         
         controlwindow.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         controlwindow.setLocation(dx,dy);
@@ -53,12 +53,12 @@ public class GameControlerModel extends JFrame{
         return attack;
     }
 
-    public JButton getItem() {
-        return item;
+    public JButton getHeal() {
+        return heal;
     }
 
-    public JButton getDefend() {
-        return defend;
+    public JButton getPower() {
+        return power;
     }
 
     public Font getNormalFont() {

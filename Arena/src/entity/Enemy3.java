@@ -9,8 +9,8 @@ import javax.imageio.ImageIO;
 
 public class Enemy3 extends Entity{
     private GamePanel gp;
-
-    public Enemy3(GamePanel gp) {
+    private int ty;
+    public Enemy3(GamePanel gp,int type) {
         this.setGp(gp);
         
         setDefaultValues();
@@ -20,8 +20,20 @@ public class Enemy3 extends Entity{
     public void setDefaultValues(){
         x=450;
         y=180;
-        setHp(200);
-        atk=40;
+        switch (getGp().getType()) {
+            case 1:
+                setHp(120);
+                setAtk(10);
+                break;
+            case 2:
+                setHp(220);
+                setAtk(10);
+                break;
+            case 3:
+                setHp(180);
+                setAtk(20);
+                break;
+        }
         direction = "idle1";
     }
     public void update(){
@@ -86,6 +98,13 @@ public class Enemy3 extends Entity{
             e.printStackTrace();
         }
     }
+    public int getTy() {
+        return ty;
+    }
+
+    public void setTy(int ty) {
+        this.ty = ty;
+    }
     
     public GamePanel getGp() {
         return gp;
@@ -108,6 +127,11 @@ public class Enemy3 extends Entity{
     @Override
     public void attacked(double n) {
         this.setHp((int) (this.getHp()-n));
+    }
+
+    @Override
+    public void heal(Hero h) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
  

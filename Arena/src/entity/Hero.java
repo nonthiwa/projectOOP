@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 
 public class Hero extends Entity{
     private GamePanel gp;
+    private boolean dying;
     private boolean actionA=false;
     private boolean actionD=false;
     public Hero(GamePanel gp) {
@@ -21,7 +22,8 @@ public class Hero extends Entity{
         x=130;
         y=210;
         setHp(100);
-        atk=100;
+        setAtk(15);
+        dying=false;
         direction = "idle1";
     }
     public void update(){
@@ -148,6 +150,11 @@ public class Hero extends Entity{
     @Override
     public void attacked(double n) {
         this.setHp((int) (this.getHp()-n));
+    }
+
+    @Override
+    public void heal(Hero h) {
+        
     }
     
 }

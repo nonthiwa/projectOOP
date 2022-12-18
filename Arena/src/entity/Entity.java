@@ -6,10 +6,9 @@ import java.awt.image.BufferedImage;
 public abstract  class Entity {
     
     public int x , y;
-    public int speed;
     private int hp;
-    public String hpS;
-    public int atk;
+    private String hpS;
+    private int atk;
     
     
     public BufferedImage idle1,idle2,idle3,idle4,idle5,idle6; 
@@ -22,6 +21,7 @@ public abstract  class Entity {
     public abstract void attack(Hero h);
     public abstract void attack(Enemy e1);
     public abstract void attacked(double n);
+    public abstract void heal(Hero h);
     public int getHp() {
         return hp;
     }
@@ -41,6 +41,10 @@ public abstract  class Entity {
 
     public int getAtk() {
         return atk;
+    }
+
+    public void setAtk(int atk) {
+        this.atk = atk;
     }
     
 }

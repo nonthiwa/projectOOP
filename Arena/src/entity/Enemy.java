@@ -9,10 +9,12 @@ import javax.imageio.ImageIO;
 
 public class Enemy extends Entity{
     private GamePanel gp;
-
-    public Enemy(GamePanel gp) {
+    private boolean dying;
+    private int ty;
+    public Enemy(GamePanel gp,int type) {
         this.setGp(gp);
-        
+        setTy(type);
+        System.out.println(getTy());
         setDefaultValues();
         getEnemyImage();
     }
@@ -20,8 +22,21 @@ public class Enemy extends Entity{
     public void setDefaultValues(){
         x=450;
         y=180;
-        setHp(200);
-        atk=40;
+        switch (getTy()) {
+            case 1 -> {
+                setHp(60);
+                setAtk(10);
+            }
+            case 2 -> {
+                setHp(140);
+                setAtk(10);
+            }
+            case 3 -> {
+                setHp(140);
+                setAtk(20);
+            }
+        }
+        dying=false;
         direction = "idle1";
     }
     public void update(){
@@ -51,7 +66,8 @@ public class Enemy extends Entity{
     public void draw(Graphics2D g2){
           
         BufferedImage image = null;
-        switch(spriteNum){
+        if(getGp().getAction() == 0){
+            switch(spriteNum){
             case 0:
                 image = idle1;
                 break;
@@ -71,9 +87,32 @@ public class Enemy extends Entity{
                 image = idle6;
                 break;
         }
+        }
+        else{
+            switch(spriteNum){
+            case 0:
+                image = idle1;
+                break;
+            case 1:
+                image = idle2;
+                break;
+            case 2:
+                image = idle3;
+                break;
+            case 3:
+                image = idle4;
+                break;
+            case 4:
+                image = idle5;
+                break;
+            case 5:
+                image = idle6;
+                break;
+        }
+        }
+
         g2.drawImage(image,x,y,gp.tileSize*4,gp.tileSize*4,null);
     }
-    
     public void getEnemyImage(){
         try{
             idle1 = ImageIO.read(getClass().getResourceAsStream("/EnemyPic/demon-idle1.png"));
@@ -85,6 +124,23 @@ public class Enemy extends Entity{
         }catch(IOException e){
             e.printStackTrace();
         }
+    }
+
+    public int getTy() {
+        return ty;
+    }
+
+    public void setTy(int ty) {
+        this.ty = ty;
+    }
+
+
+    public boolean isDying() {
+        return dying;
+    }
+
+    public void setDying(boolean dying) {
+        this.dying = dying;
     }
     
     public GamePanel getGp() {
@@ -109,5 +165,11 @@ public class Enemy extends Entity{
     public void attacked(double n) {
         this.setHp((int) (this.getHp()-n));
     }
+
+    @Override
+    public void heal(Hero h) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }
  
