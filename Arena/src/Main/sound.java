@@ -15,6 +15,7 @@ public class sound{
             soundURL[0] = getClass().getResource("/sound/IntotheRuins.wav");
             soundURL[1] = getClass().getResource("/sound/BossBattle.wav");
             soundURL[2] = getClass().getResource("/sound/interface3_1.wav");
+            soundURL[3] = getClass().getResource("/sound/sword-unsheathe5.wav");
         }
         public void setfile(int i){
             try{

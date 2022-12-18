@@ -19,7 +19,7 @@ public abstract  class Entity {
     public int spriteNum = 0;
     
     public abstract void attack(Hero h);
-    public abstract void attack(Enemy e1);
+    public abstract void attack(Enemy e);
     public abstract void attacked(double n);
     public abstract void heal(Hero h);
     public int getHp() {

@@ -38,10 +38,12 @@ public class GamePanel extends JPanel implements Runnable {
     private LogControlerModel logControlmodel;
     private GameControler gameControl; 
     private int action = 0;
+    private soundcontrol Sound;
     Thread gameThread;
     int FPS = 60;
 
     public GamePanel(int i){
+        Sound = new soundcontrol();
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setOpaque(false);
         this.setDoubleBuffered(true);
@@ -214,6 +216,14 @@ public class GamePanel extends JPanel implements Runnable {
 
     public Enemy3 getEnemy3() {
         return enemy3;
+    }
+
+    public soundcontrol getSound() {
+        return Sound;
+    }
+
+    public void setSound(soundcontrol Sound) {
+        this.Sound = Sound;
     }
     
 }

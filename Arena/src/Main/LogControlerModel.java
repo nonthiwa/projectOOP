@@ -32,9 +32,7 @@ public class LogControlerModel extends JFrame{
         int dx = ((centerPoint.x - windowSize.width)/2)+850;
         int dy = ((centerPoint.y - windowSize.height)/2)-130;
         controlwindow = new JFrame("Log");
-        if(type == 1 && stage == 1){
-            log = new JTextArea("Hero Status\nHP : "+hero.getHp()+"/100\nATK : "+hero.getAtk()+"\nEnemy Status\nHP : "+e1.getHp()+"\nATK : "+e1.getAtk());
-        }
+        log = new JTextArea("Hero Status\nHP : "+hero.getHp()+"/100\nATK : "+hero.getAtk()+"\nEnemy Status\nHP : "+e1.getHp()+"\nATK : "+e1.getAtk());
         log.setBackground(Color.black);
         log.setForeground(Color.white);
         log.setFont(normalFont);

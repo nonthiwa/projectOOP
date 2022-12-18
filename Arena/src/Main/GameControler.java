@@ -16,6 +16,7 @@ public class GameControler implements ActionListener{
     private Enemy e1;
     private Enemy2 e2;
     private Enemy3 e3;
+    private soundcontrol Sound;
     private int stage;
     public GameControler(GameControlerModel gm,Hero hero, LogControlerModel lm, Enemy e, Enemy2 e2, Enemy3 e3, int s) {
         setHero(hero);
@@ -23,6 +24,7 @@ public class GameControler implements ActionListener{
         setStage(s);
         setControlModel(gm);
         setLogModel(lm);
+        Sound = new soundcontrol();
         controlModel.getAttack().addActionListener(this);
         controlModel.getHeal().addActionListener(this);
         controlModel.getPower().addActionListener(this);
@@ -30,11 +32,11 @@ public class GameControler implements ActionListener{
 
     public void actionPerformed(ActionEvent e) {
        if (e.getSource().equals(controlModel.getAttack())){
+           Sound.playSe(3);
            hero.setActionA(true);
            if(getStage() == 1){
                getHero().getGp().setAction(1);
            }
-          
            
        }
        if (e.getSource().equals(controlModel.getPower())){
