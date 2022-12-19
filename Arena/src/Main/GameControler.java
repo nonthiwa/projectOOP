@@ -21,6 +21,8 @@ public class GameControler implements ActionListener{
     public GameControler(GameControlerModel gm,Hero hero, LogControlerModel lm, Enemy e, Enemy2 e2, Enemy3 e3, int s) {
         setHero(hero);
         setE1(e);
+        setE2(e2);
+        setE3(e3);
         setStage(s);
         setControlModel(gm);
         setLogModel(lm);
@@ -33,16 +35,56 @@ public class GameControler implements ActionListener{
     public void actionPerformed(ActionEvent e) {
        if (e.getSource().equals(controlModel.getAttack())){
            Sound.playSe(3);
-           hero.setActionA(true);
            if(getStage() == 1){
+               getHero().spriteNum = 0;
+               getE1().spriteNum = 0;
+               getHero().getGp().setAction(1);
+           }
+           if(getStage() == 2){
+               getHero().spriteNum = 0;
+               getE2().spriteNum = 0;
+               getHero().getGp().setAction(1);
+           }
+           if(getStage() == 3){
+               getHero().spriteNum = 0;
+               getE3().spriteNum = 0;
                getHero().getGp().setAction(1);
            }
            
        }
+       if (e.getSource().equals(controlModel.getHeal())){
+           if(getStage() == 1){
+               getHero().getGp().setAction(2);
+               getHero().spriteNum = 0;
+               getE1().spriteNum = 0;
+           }
+           if(getStage() == 2){
+               getHero().getGp().setAction(2);
+               getHero().spriteNum = 0;
+               getE2().spriteNum = 0;
+           }
+           if(getStage() == 3){
+               getHero().getGp().setAction(2);
+               getHero().spriteNum = 0;
+               getE3().spriteNum = 0;
+           }
+       }
        if (e.getSource().equals(controlModel.getPower())){
-           getHero().getGp().setAction(3);
-           hero.setActionD(true);
-           logModel.getLog().setText("Power Up!!\n");
+           if(getStage() == 1){
+               getHero().spriteNum = 0;
+               getE1().spriteNum = 0;
+               getHero().getGp().setAction(3);
+           }
+           if(getStage() == 2){
+               getHero().spriteNum = 0;
+               getE2().spriteNum = 0;
+               getHero().getGp().setAction(3);
+           }
+           if(getStage() == 3){
+               getHero().spriteNum = 0;
+               getE3().spriteNum = 0;
+               getHero().getGp().setAction(3);
+           }
        }
     }
     public void setLogModel(LogControlerModel logModel) {
@@ -92,6 +134,7 @@ public class GameControler implements ActionListener{
     public int getStage() {
         return stage;
     }
+
 
         
 }

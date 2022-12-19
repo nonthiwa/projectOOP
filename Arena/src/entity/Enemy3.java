@@ -18,8 +18,8 @@ public class Enemy3 extends Entity{
     }
     
     public void setDefaultValues(){
-        x=450;
-        y=180;
+        x=350;
+        y=200;
         switch (getGp().getType()) {
             case 1:
                 setHp(120);
@@ -39,22 +39,40 @@ public class Enemy3 extends Entity{
     public void update(){
         spriteCounter++;
         if(spriteCounter > 10){
-            if(spriteNum == 0 && checkrev == 0){
+            if(spriteNum == 0 && getGp().getAction() == 0){
                 spriteNum = 1;
             }
-            else if(spriteNum == 1 && checkrev == 0){
+            else if(spriteNum == 1 && getGp().getAction() == 0){
                 spriteNum = 2;
             }
-            else if(spriteNum == 2 && checkrev == 0){
+            else if(spriteNum == 2 && getGp().getAction() == 0){
                 spriteNum = 3;
             }
-            else if(spriteNum == 3 && checkrev == 0){
+            else if(spriteNum == 3 && getGp().getAction() == 0){
                 spriteNum = 4;
             }
-            else if(spriteNum == 4&& checkrev == 0){
+            else if(spriteNum == 4 && getGp().getAction() == 0){
                 spriteNum = 5;
             }
-            else if(spriteNum == 5 && checkrev == 0){
+            else if(spriteNum == 5 && getGp().getAction() == 0){
+                spriteNum = 0;
+            }
+            if(spriteNum == 0 && (getGp().getAction() == 1 || getGp().getAction() == 2 || getGp().getAction() == 3)){
+                spriteNum = 1;
+            }
+            else if(spriteNum == 1 && (getGp().getAction() == 1 || getGp().getAction() == 2 || getGp().getAction() == 3)){
+                spriteNum = 2;
+            }
+            else if(spriteNum == 2 && (getGp().getAction() == 1 || getGp().getAction() == 2 || getGp().getAction() == 3)){
+                spriteNum = 3;
+            }
+            else if(spriteNum == 3 && (getGp().getAction() == 1 || getGp().getAction() == 2 || getGp().getAction() == 3)){
+                spriteNum = 4;
+            }
+            else if(spriteNum == 4 && (getGp().getAction() == 1 || getGp().getAction() == 2 || getGp().getAction() == 3)){
+                spriteNum = 5;
+            }
+            else if(spriteNum == 5 && (getGp().getAction() == 1 || getGp().getAction() == 2 || getGp().getAction() == 3)){
                 spriteNum = 0;
             }
             spriteCounter = 0;
@@ -63,7 +81,8 @@ public class Enemy3 extends Entity{
     public void draw(Graphics2D g2){
           
         BufferedImage image = null;
-        switch(spriteNum){
+        if(getGp().getAction() == 0){
+            switch(spriteNum){
             case 0:
                 image = idle1;
                 break;
@@ -83,17 +102,93 @@ public class Enemy3 extends Entity{
                 image = idle6;
                 break;
         }
-        g2.drawImage(image,x,y,gp.tileSize*4,gp.tileSize*4,null);
+        }
+        else if (getGp().getAction() == 1){
+            switch(spriteNum){
+            case 0:
+                image = aATK1;
+                break;
+            case 1:
+                image = aATK2;
+                break;
+            case 2:
+                image = aATK3;
+                break;
+            case 3:
+                image = aATK4;
+                break;
+            case 4:
+                image = aATK5;
+                break;
+            case 5:
+                image = aATK6;
+                break;
+        }
+        }
+        
+        else if (getGp().getAction() == 2){
+            switch(spriteNum){
+            case 0:
+                image = aATK1;
+                break;
+            case 1:
+                image = aATK2;
+                break;
+            case 2:
+                image = aATK3;
+                break;
+            case 3:
+                image = aATK4;
+                break;
+            case 4:
+                image = aATK5;
+                break;
+            case 5:
+                image = aATK6;
+                break;
+        }
+        }
+        
+        else if (getGp().getAction() == 3){
+            switch(spriteNum){
+            case 0:
+                image = aATK1;
+                break;
+            case 1:
+                image = aATK2;
+                break;
+            case 2:
+                image = aATK3;
+                break;
+            case 3:
+                image = aATK4;
+                break;
+            case 4:
+                image = aATK5;
+                break;
+            case 5:
+                image = aATK6;
+                break;
+        }
+        }
+        g2.drawImage(image,x,y,gp.tileSize*7,gp.tileSize*7,null);
     }
     
     public void getEnemyImage(){
         try{
-            idle1 = ImageIO.read(getClass().getResourceAsStream("/EnemyPic/demon-idle1.png"));
-            idle2 = ImageIO.read(getClass().getResourceAsStream("/EnemyPic/demon-idle2.png"));
-            idle3 = ImageIO.read(getClass().getResourceAsStream("/EnemyPic/demon-idle3.png"));
-            idle4 = ImageIO.read(getClass().getResourceAsStream("/EnemyPic/demon-idle4.png"));
-            idle5 = ImageIO.read(getClass().getResourceAsStream("/EnemyPic/demon-idle5.png"));
-            idle6 = ImageIO.read(getClass().getResourceAsStream("/EnemyPic/demon-idle6.png"));
+            idle1 = ImageIO.read(getClass().getResourceAsStream("/Enemy3Pic/Monidle1.png"));
+            idle2 = ImageIO.read(getClass().getResourceAsStream("/Enemy3Pic/Monidle2.png"));
+            idle3 = ImageIO.read(getClass().getResourceAsStream("/Enemy3Pic/Monidle3.png"));
+            idle4 = ImageIO.read(getClass().getResourceAsStream("/Enemy3Pic/Monidle4.png"));
+            idle5 = ImageIO.read(getClass().getResourceAsStream("/Enemy3Pic/Monidle5.png"));
+            idle6 = ImageIO.read(getClass().getResourceAsStream("/Enemy3Pic/Monidle6.png"));
+            
+            aATK1 = ImageIO.read(getClass().getResourceAsStream("/Enemy3Pic/MonATK1.png"));
+            aATK2 = ImageIO.read(getClass().getResourceAsStream("/Enemy3Pic/MonATK2.png"));
+            aATK3 = ImageIO.read(getClass().getResourceAsStream("/Enemy3Pic/MonATK3.png"));
+            aATK4 = ImageIO.read(getClass().getResourceAsStream("/Enemy3Pic/MonATK4.png"));
+            aATK5 = ImageIO.read(getClass().getResourceAsStream("/Enemy3Pic/MonATK5.png"));
+            aATK6 = ImageIO.read(getClass().getResourceAsStream("/Enemy3Pic/MonATK6.png"));
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -131,6 +226,11 @@ public class Enemy3 extends Entity{
 
     @Override
     public void heal(Hero h) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void powerup(Hero h) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

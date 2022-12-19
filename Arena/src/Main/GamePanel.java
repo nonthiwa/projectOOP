@@ -28,7 +28,7 @@ public class GamePanel extends JPanel implements Runnable {
     private Image bg1, bg2, bg3;
     
     public int count=0;
-    public int stage = 1;
+    private int stage = 1;
     public int type;
     private Enemy enemy;
     private Enemy2 enemy2;
@@ -72,15 +72,20 @@ public class GamePanel extends JPanel implements Runnable {
         long timer = 0;
         int drawCount = 0;
         while(gameThread != null){
-            if (enemy.getHp() <= 0){
-                stage = 2;
+            if(enemy.getHp() > 0){
+                getLogControlmodel().getLog().setText("Hero Status\nHP : "+getHero().getHp()+"/100\nATK : "+getHero().getAtk()+"\nEnemy Status\nHP : "+getEnemy().getHp()+"\nATK : "+getEnemy().getAtk());
+            }
+            if (enemy.getHp() <= 0 && enemy2.getHp() > 0){
+                setStage(2);
                 getLogControlmodel().getLog().setText("Hero Status\nHP : "+getHero().getHp()+"/100\nATK : "+getHero().getAtk()+"\nEnemy Status\nHP : "+getEnemy2().getHp()+"\nATK : "+getEnemy2().getAtk());
 
             }
-            else if (enemy2.getHp() <= 0){
-                stage = 3;
+            if (enemy2.getHp() <= 0){
+                setStage(3);
+                getLogControlmodel().getLog().setText("Hero Status\nHP : "+getHero().getHp()+"/100\nATK : "+getHero().getAtk()+"\nEnemy Status\nHP : "+getEnemy3().getHp()+"\nATK : "+getEnemy3().getAtk());
+
             }
-            
+            System.out.println(getAction());
             currentTime = System.nanoTime();
             delta +=(currentTime - lastTime)/ drawInterval;
             timer +=(currentTime - lastTime);
@@ -96,17 +101,16 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
     public void update(){
-        hero.update();
-        if(stage == 1 && getAction() == 0){
+        if(getStage() == 1){
+            hero.update();
             enemy.update();
         }
-        else if (stage == 1 && getAction() == 1){
-            enemy.update(); 
-        }
-        if (stage == 2){
+        if (getStage() == 2){
+            hero.update();
             enemy2.update();
         }
-        if(stage == 3){
+        if(getStage() == 3){
+            hero.update();
             enemy3.update();
         }
         
@@ -116,19 +120,26 @@ public class GamePanel extends JPanel implements Runnable {
         super.paintComponent(g);
         
         Graphics2D g2 = (Graphics2D)g;
-        if(stage == 1){
-            g.drawImage(bg1, 0, 0, null);
-            enemy.draw(g2);
+        
+        switch (getStage()) {
+            case 1:
+                g.drawImage(bg1, 0, 0, null);
+                hero.draw(g2);
+                enemy.draw(g2);
+                break;
+            case 2:
+                g.drawImage(bg2, 0, 0, null);
+                hero.draw(g2);
+                enemy2.draw(g2);
+                break;
+            case 3:
+                g.drawImage(bg3, 0, 0, null);
+                hero.draw(g2);
+                enemy3.draw(g2);
+                break;
+            default:
+                break;
         }
-        if(stage == 2){
-            g.drawImage(bg2, 0, 0, null);
-            enemy2.draw(g2);
-        }
-        if(stage == 3){
-            g.drawImage(bg3, 0, 0, null);
-            enemy3.draw(g2);
-        }
-        hero.draw(g2);
         g2.dispose();
         
     }
@@ -224,6 +235,14 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void setSound(soundcontrol Sound) {
         this.Sound = Sound;
+    }
+
+    public int getStage() {
+        return stage;
+    }
+
+    public void setStage(int stage) {
+        this.stage = stage;
     }
     
 }

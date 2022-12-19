@@ -11,7 +11,7 @@ public abstract  class Entity {
     private int atk;
     
     
-    public BufferedImage idle1,idle2,idle3,idle4,idle5,idle6,aATK1,aATK2,aATK3,aATK4,aATK5,aATK6,aATK7,aATK8,aATK9,aATK10,aATK11; 
+    public BufferedImage idle1,idle2,idle3,idle4,idle5,idle6,idle7,idle8,idle9,idle10,idle11,idle12,idle13,idle14,idle15,aATK1,aATK2,aATK3,aATK4,aATK5,aATK6,aATK7,aATK8,aATK9,aATK10,aATK11,aATK12,aATK13,aATK14; 
     public String direction;
     
     public int checkrev = 0;
@@ -22,6 +22,7 @@ public abstract  class Entity {
     public abstract void attack(Enemy e);
     public abstract void attacked(double n);
     public abstract void heal(Hero h);
+    public abstract void powerup(Hero h);
     public int getHp() {
         return hp;
     }
