@@ -23,7 +23,7 @@ public class Enemy3 extends Entity{
         switch (getGp().getType()) {
             case 1:
                 setHp(120);
-                setAtk(10);
+                setAtk(15);
                 break;
             case 2:
                 setHp(220);
