@@ -94,5 +94,9 @@ public class GameControlerModel extends JFrame{
             e.printStackTrace();
         }
     }
+
+    public void closeWindow() {
+        controlwindow.dispose();
+    }
  
 }

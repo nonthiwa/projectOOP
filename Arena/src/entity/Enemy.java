@@ -24,7 +24,7 @@ public class Enemy extends Entity{
         switch (getTy()) {
             case 1 -> {
                 setHp(60);
-                setAtk(10);
+                setAtk(100);
             }
             case 2 -> {
                 setHp(140);
