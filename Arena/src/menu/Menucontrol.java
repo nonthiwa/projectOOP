@@ -49,7 +49,7 @@ public class Menucontrol implements ActionListener, WindowListener {
         }
         if(e.getSource().equals(level.getEasyButton())){
             Sound.playSe(2);
-            if (getTutor().isCheck() == true){
+            if ((getTutor() != null) && (getTutor().isCheck() == true)){
                 getTutor().getFrame().dispose();
             }
             main.getSound().stopMusic();
@@ -58,7 +58,7 @@ public class Menucontrol implements ActionListener, WindowListener {
         }
         else if(e.getSource().equals(level.getNormalButton())){
             Sound.playSe(2);
-            if (getTutor().isCheck() == true){
+            if ((getTutor() != null) && (getTutor().isCheck() == true)){
                 getTutor().getFrame().dispose();
             }
             main.getSound().stopMusic();
@@ -67,7 +67,7 @@ public class Menucontrol implements ActionListener, WindowListener {
         }
         else if(e.getSource().equals(level.getHardButton())){
             Sound.playSe(2);
-            if (getTutor().isCheck() == true){
+            if ((getTutor() != null) && (getTutor().isCheck() == true)){
                 getTutor().getFrame().dispose();
             }
             main.getSound().stopMusic();

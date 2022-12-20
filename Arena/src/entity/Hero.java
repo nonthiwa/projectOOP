@@ -382,7 +382,7 @@ public class Hero extends Entity{
                 break;
         }
         }
-            
+//        KO   
         g2.drawImage(image,x,y,gp.tileSize*5,gp.tileSize*5,null);
     }
     

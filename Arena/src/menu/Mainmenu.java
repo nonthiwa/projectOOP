@@ -27,7 +27,7 @@ public class Mainmenu extends JFrame{
     public Mainmenu() {   
         Sound = new soundcontrol();
         window = new JFrame();
-//        window.setSize(800,700);
+//        window.setSize(800,700)DAN;
         window.setPreferredSize(new Dimension(800, 700));
         window.pack();
         window.setResizable(false);

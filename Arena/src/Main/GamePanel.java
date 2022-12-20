@@ -17,15 +17,15 @@ import javax.swing.JPanel;
 public class GamePanel extends JPanel implements Runnable {
 
     //SCREEN SETTING
-    final int originalTileSize = 16;
-    final int scale = 3;
-    public final int tileSize = originalTileSize * scale;//48x48 title
-    final int maxScreenCol = 16;
-    final int maxScreenRow = 12;
-    final int screenWidth = tileSize * maxScreenCol;//768 pixels
-    final int screenHeight = tileSize * maxScreenRow;//576 pixels
+    public final int originalTileSize = 16;
+    public final int scale = 3;
+    public final int tileSize = originalTileSize * scale;//48x48 titleK
+    public final int maxScreenCol = 16;
+    public final int maxScreenRow = 12;
+    public final int screenWidth = tileSize * maxScreenCol;//768 pixelsI
+    public final int screenHeight = tileSize * maxScreenRow;//576 pixelsB
 
-    private BufferedImage image1, image2, image3;
+    private BufferedImage image1,    image2, image3;
     private Image bg1, bg2, bg3;
 
     private Font titleFont = new Font("Times New Roman", Font.PLAIN, 90);
@@ -44,8 +44,8 @@ public class GamePanel extends JPanel implements Runnable {
     private GameControler gameControl;
     private int action = 0;
     private soundcontrol Sound;
-    Thread gameThread;
-    int FPS = 60;
+    public Thread gameThread;
+    public int FPS = 60;
 
     public GamePanel(int i, JFrame window){
         getImages();

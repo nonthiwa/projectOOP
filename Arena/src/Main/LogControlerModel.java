@@ -40,12 +40,11 @@ public class LogControlerModel extends JFrame{
         logh = new JTextAreaPlus("\n Hero Status\n HP : "+hero.getHp()+"/100\n ATK : "+hero.getAtk());
         logm = new JTextAreaPlus("\n Enemy Status\n HP : "+e1.getHp()+"\n ATK : "+e1.getAtk());
         logh.setImage(loghbg);
-        logh.setImage(logmbg);
         logh.setBackground(Color.black);
         logh.setForeground(Color.black);
         logh.setFont(normalFont);
         logh.setEditable(false);
-        logm.setImage(loghbg);
+        logm.setImage(logmbg);
         logm.setBackground(Color.black);
         logm.setForeground(Color.black);
         logm.setFont(normalFont);
