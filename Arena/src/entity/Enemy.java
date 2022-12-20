@@ -9,7 +9,6 @@ import javax.imageio.ImageIO;
 
 public class Enemy extends Entity{
     private GamePanel gp;
-    private boolean dying;
     private int ty;
     public Enemy(GamePanel gp,int type) {
         this.setGp(gp);
@@ -24,7 +23,7 @@ public class Enemy extends Entity{
         switch (getTy()) {
             case 1 -> {
                 setHp(60);
-                setAtk(100);
+                setAtk(10);
             }
             case 2 -> {
                 setHp(140);
@@ -32,10 +31,9 @@ public class Enemy extends Entity{
             }
             case 3 -> {
                 setHp(140);
-                setAtk(20);
+                setAtk(15);
             }
         }
-        dying=false;
         direction = "idle1";
     }
     public void update(){
@@ -183,14 +181,6 @@ public class Enemy extends Entity{
         this.ty = ty;
     }
 
-
-    public boolean isDying() {
-        return dying;
-    }
-
-    public void setDying(boolean dying) {
-        this.dying = dying;
-    }
     
     public GamePanel getGp() {
         return gp;

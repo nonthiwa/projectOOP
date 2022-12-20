@@ -3,21 +3,22 @@ package menu;
 import Main.StartGame;
 import Main.soundcontrol;
 import java.awt.event.*;
-import javax.swing.JFrame;
 public class Menucontrol implements ActionListener, WindowListener {
     private Mainmenu main;
     private LevelMenu level;
     private soundcontrol Sound;
+    private tutormenu tutor;
     private int easy=1;
     private int normal=2;
     private int hard=3;
     public Menucontrol(){
         Sound = new soundcontrol();
-        main = new Mainmenu();;
+        main = new Mainmenu();
         level = new LevelMenu();
         level.getLevelButtonPanel().setVisible(false);
         main.getCon().add(level.getLevelButtonPanel());
         main.getStartButton().addActionListener(this);
+        main.getHowtoButton().addActionListener(this);
         main.getExitButton().addActionListener(this);
         level.getNormalButton().addActionListener(this);
         level.getEasyButton().addActionListener(this);
@@ -35,34 +36,54 @@ public class Menucontrol implements ActionListener, WindowListener {
             }
             Sound.playSe(2);
         }
-        if (e.getSource().equals(level.getBackButton())){
-            level.getLevelButtonPanel().setVisible(false);
-            main.getStartButtonPanel().setVisible(true);
-            level.setCheck(false);
+        else if(e.getSource().equals(main.getHowtoButton())){
             Sound.playSe(2);
+            tutor = new tutormenu();
+            getTutor().setCheck(true);
+            
+            
         }
-        if(e.getSource().equals(main.getExitButton())){
+        else if(e.getSource().equals(main.getExitButton())){
             Sound.playSe(2);
             System.exit(0);
         }
         if(e.getSource().equals(level.getEasyButton())){
             Sound.playSe(2);
+            if (getTutor().isCheck() == true){
+                getTutor().getFrame().dispose();
+            }
             main.getSound().stopMusic();
             main.getWindow().setVisible(false);
             new StartGame(easy);
         }
         else if(e.getSource().equals(level.getNormalButton())){
             Sound.playSe(2);
+            if (getTutor().isCheck() == true){
+                getTutor().getFrame().dispose();
+            }
             main.getSound().stopMusic();
             main.getWindow().setVisible(false);
             new StartGame(normal);
         }
         else if(e.getSource().equals(level.getHardButton())){
             Sound.playSe(2);
+            if (getTutor().isCheck() == true){
+                getTutor().getFrame().dispose();
+            }
             main.getSound().stopMusic();
             main.getWindow().setVisible(false);
             new StartGame(hard);
         }
+        else if (e.getSource().equals(level.getBackButton())){
+            level.getLevelButtonPanel().setVisible(false);
+            main.getStartButtonPanel().setVisible(true);
+            level.setCheck(false);
+            Sound.playSe(2);
+        }
+    }
+
+    public tutormenu getTutor() {
+        return tutor;
     }
 
     @Override

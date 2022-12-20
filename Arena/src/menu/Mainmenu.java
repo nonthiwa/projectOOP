@@ -7,14 +7,12 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.GraphicsEnvironment;
 import java.awt.Image;
-import java.awt.Point;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 public class Mainmenu extends JFrame{
     private ImageIcon playb, playbh, tutorialb, tutorialbh, exitb, exitbh;
-    private Image bg;
+    private Image bg,tutorbg,tutorbgS;
     private soundcontrol Sound;
     private JFrame window;
     private Container con;
@@ -35,8 +33,8 @@ public class Mainmenu extends JFrame{
         window.setResizable(false);
         window.setLocationRelativeTo(null);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.getContentPane().setBackground(Color.BLACK);
         getImages();
+        Imagebg("/BackgroundPic/wallpaperflare.com_wallpaper.jpg");
         window.setContentPane(new JPanel() {
             @Override
             public void paintComponent(Graphics g) {
@@ -46,6 +44,7 @@ public class Mainmenu extends JFrame{
         });
         window.setLayout(null);
         window.setVisible(true);
+        
         con = window.getContentPane();
         
         titleNamePanel = new JPanel();
@@ -63,7 +62,6 @@ public class Mainmenu extends JFrame{
         
         startButton = new JButton("");
         startButton.setBackground(Color.black);
-        startButton.setForeground(Color.white);
         startButton.setOpaque(false);
         startButton.setBorderPainted(false);
         startButton.setIcon(playb);
@@ -73,7 +71,6 @@ public class Mainmenu extends JFrame{
         
         howtoButton = new JButton("");
         howtoButton.setBackground(Color.black);
-        howtoButton.setForeground(Color.white);
         howtoButton.setOpaque(false);
         howtoButton.setBorderPainted(false);
         howtoButton.setIcon(tutorialb);
@@ -83,7 +80,6 @@ public class Mainmenu extends JFrame{
         
         exitButton = new JButton("");
         exitButton.setBackground(Color.black);
-        exitButton.setForeground(Color.white);
         exitButton.setOpaque(false);
         exitButton.setBorderPainted(false);
         exitButton.setIcon(exitb);
@@ -192,9 +188,19 @@ public class Mainmenu extends JFrame{
         return exitButton;
     }
     
+    public void Imagebg(String imagePath){
+      try{
+           this.bg = ImageIO.read(getClass().getResourceAsStream(imagePath));
+      }
+      catch(IOException e){
+            e.printStackTrace();
+        }
+   
+  }
     public void getImages(){
         try{
-            bg = ImageIO.read(getClass().getResourceAsStream("/BackgroundPic/wallpaperflare.com_wallpaper.jpg"));
+            tutorbg =ImageIO.read(getClass().getResourceAsStream("/BackgroundPic/wallpaperflare.com_wallpaper.jpg"));
+            tutorbgS = tutorbg.getScaledInstance(800, 700, Image.SCALE_DEFAULT);
             playb = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/buttonPic/play.png")));
             playbh = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/buttonPic/playhover.png")));
             tutorialb = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/buttonPic/tutorial.png")));

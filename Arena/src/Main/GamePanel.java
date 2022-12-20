@@ -4,22 +4,15 @@ import entity.Enemy;
 import entity.Enemy2;
 import entity.Enemy3;
 import entity.Hero;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 public class GamePanel extends JPanel implements Runnable {
 
@@ -32,18 +25,16 @@ public class GamePanel extends JPanel implements Runnable {
     final int screenWidth = tileSize * maxScreenCol;//768 pixels
     final int screenHeight = tileSize * maxScreenRow;//576 pixels
 
-    private BufferedImage image1, image2, image3, image4, image5;
-    private Image bg1, bg2, bg3, bg4, bg5, image6;
+    private BufferedImage image1, image2, image3;
+    private Image bg1, bg2, bg3;
 
     private Font titleFont = new Font("Times New Roman", Font.PLAIN, 90);
     private String gm = "Gamer Over", c = "Congratulations!!";
 
-    public int count=0;
     private int stage = 1;
     public int type;
-
-    private ImageButton retryButton;
-    private ImageIcon menubh, menub;
+    
+    private JFrame startgame;
     private Enemy enemy;
     private Enemy2 enemy2;
     private Enemy3 enemy3;
@@ -56,20 +47,11 @@ public class GamePanel extends JPanel implements Runnable {
     Thread gameThread;
     int FPS = 60;
 
-    public GamePanel(int i) throws IOException{
+    public GamePanel(int i, JFrame window){
         getImages();
+        setStartgame(window);
         Sound = new soundcontrol();
         Sound.playMusic(1);
-            
-//        image6 = ImageIO.read(getClass().getResourceAsStream("/buttonPic/menu.png"));
-//        ActionListener listener = new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-//            }
-//        };
-//        image6.addActionListener(listener);
-        
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setOpaque(false);
         this.setDoubleBuffered(true);
@@ -97,6 +79,16 @@ public class GamePanel extends JPanel implements Runnable {
         long timer = 0;
         int drawCount = 0;
         while(gameThread != null){
+            if (getStage() == 5){
+                GameOver gameover = new GameOver();
+                getStartgame().dispose();
+                gameThread.stop();
+            }
+            if (getStage() == 4){
+                GameWinner gamewinner = new GameWinner();
+                getStartgame().dispose();
+                gameThread.stop();
+            }
             if (hero.getHp() <= 0){
                 setStage(5);
                 Sound.stopMusic();
@@ -175,19 +167,6 @@ public class GamePanel extends JPanel implements Runnable {
                 hero.draw(g2);
                 enemy3.draw(g2);
                 break;
-            case 4:
-                g.drawImage(bg4, 0, 0, null);
-                g.setFont(titleFont);
-                g.setColor(Color.white);
-                g.drawString(c, 100, 100);
-                break;
-            case 5:
-                g.drawImage(bg5, 0, 0, null);
-                g.setFont(titleFont);
-                g.setColor(Color.white);
-                g.drawString(gm, 150, 100);
-                g.drawImage(image6,300,300,null);
-                break;
             default:
                 break;
         }
@@ -207,11 +186,6 @@ public class GamePanel extends JPanel implements Runnable {
             bg2 = image2.getScaledInstance(800, 600, Image.SCALE_DEFAULT);
             image3 = ImageIO.read(getClass().getResourceAsStream("/BackgroundPic/wallpaperflare.com_wallpaper_1.jpg"));
             bg3 = image3.getScaledInstance(800, 600, Image.SCALE_DEFAULT);
-            image4 = ImageIO.read(getClass().getResourceAsStream("/BackgroundPic/wallpaperflare.com_wallpaper_5.jpg"));
-            bg4 = image4.getScaledInstance(800, 600, Image.SCALE_DEFAULT);
-            image5 = ImageIO.read(getClass().getResourceAsStream("/BackgroundPic/wallpaperflare.com_wallpaper_3.jpg"));
-            bg5 = image5.getScaledInstance(800, 600, Image.SCALE_DEFAULT);
-            menubh = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/buttonPic/menuhover.png")));
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -301,14 +275,12 @@ public class GamePanel extends JPanel implements Runnable {
         this.stage = stage;
     }
 
-    public ImageButton getRetryButton() {
-        return retryButton;
+    public void setStartgame(JFrame startgame) {
+        this.startgame = startgame;
     }
 
-    public void setRetryButton(ImageButton retryButton) {
-        this.retryButton = retryButton;
+    public JFrame getStartgame() {
+        return startgame;
     }
-
-
-
+    
 }

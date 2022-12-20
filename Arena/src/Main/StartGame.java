@@ -12,7 +12,7 @@ public class StartGame {
         window.setResizable(false);
         window.setTitle("THE ARENA");
         
-        GamePanel gamePanel = new GamePanel(level);
+        GamePanel gamePanel = new GamePanel(level, getWindow());
         window.add(gamePanel);
         window.pack();
          
@@ -21,6 +21,14 @@ public class StartGame {
         
         gamePanel.startGameThread();
     }
+
+    public JFrame getWindow() {
+        return window;
+    }
+
+    public void setWindow(JFrame window) {
+        this.window = window;
+    }
     
-            
+          
 }

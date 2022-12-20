@@ -31,7 +31,7 @@ public class Enemy2 extends Entity{
                 break;
             case 3:
                 setHp(160);
-                setAtk(20);
+                setAtk(15);
                 break;
         }
         direction = "idle1";
