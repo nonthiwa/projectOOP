@@ -116,6 +116,7 @@ public class GamePanel extends JPanel implements Runnable {
                 getLogControlmodel().closeWindow();
                 getGameControlmodel().closeWindow();
             }
+            
             currentTime = System.nanoTime();
             delta +=(currentTime - lastTime)/ drawInterval;
             timer +=(currentTime - lastTime);

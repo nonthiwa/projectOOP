@@ -9,7 +9,6 @@ import javax.imageio.ImageIO;
 
 public class Hero extends Entity{
     private GamePanel gp;
-    private boolean dying;
     public Hero(GamePanel gp) {
         this.setGp(gp);
         
@@ -21,12 +20,11 @@ public class Hero extends Entity{
         y=390;
         setHp(100);
         setAtk(15);
-        dying=false;
         direction = "idle1";
     }
     public void update(){
         spriteCounter++;
-        if(spriteCounter > 10){
+        if(spriteCounter > 8){
             if(spriteNum == 0 && getGp().getAction() == 0){
                 spriteNum = 1;
             }
